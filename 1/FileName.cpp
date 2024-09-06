@@ -1,191 +1,143 @@
 #include <iostream>
-#include <string>
 
 using namespace std;
 
-class mouse {
-	string name;
+class pet {
+	char* name;
+	int age;
 public:
-	mouse()
-	{
-		name = "Logitech";
+	pet() {
+		name = nullptr;
+		age = 0;
 	}
-	mouse(string n)
-	{
-		name = n;
+	pet(const char* n, int a) {
+		name = new char[strlen(n) + 1];
+		strcpy_s(name, strlen(n) + 1, n);
+		age = a;
 	}
-	void Setname(string n) {
-		name = n;
-	}
-	string Getname() {
-		return name;
-	}
-};
-
-class keyboard {
-	string name;
-public:
-	keyboard()
-	{
-		name = "Tech Bloody";
-	}
-	keyboard(string n)
-	{
-		name = n;
-	}
-	void Setname(string n) {
-		name = n;
-	}
-	string Getname() {
-		return name;
-	}
-};
-
-class columns {
-	string name;
-public:
-	columns()
-	{
-		name = "EDIFIER GAMING";
-	}
-	columns(string n)
-	{
-		name = n;
-	}
-	void Setname(string n) {
-		name = n;
-	}
-	string Getname() {
-		return name;
-	}
-};
-
-class laptop {
-
-	class processor{
-		string name;
-	public:
-		processor()
-		{
-			name = '---';
-		}
-		processor(string n)
-		{
-			name = n;
-		}
-		void Setname(string n) {
-			name = n;
-		}
-		void Show()
-		{
-			cout << "processor: " << name << endl;
-		}
-	};
-
-	class ssdmemory {
-		double ssd;
-	public:
-		ssdmemory()
-		{
-			ssd = 500;
-		}
-		ssdmemory(double n)
-		{
-			ssd = n;
-		}
-		void Setmemory(double n) {
-			ssd = n;
-		}
-		void Show()
-		{
-			cout << "Ssd memory: " << ssd << endl;
-		}
-	};
-	
-	class osmemory {
-		double os;
-	public:
-		osmemory()
-		{
-			os = 16;
-		}
-		osmemory(double n)
-		{
-			os = n;
-		}
-		void Setmemory(double n) {
-			os = n;
-		}
-		void Show()
-		{
-			cout << "Os memory: " << os << endl;
-		}
-	};
-
-	class vicard {
-		string name;
-	public:
-		vicard()
-		{
-			name = "GeForce";
-		}
-		vicard(string n)
-		{
-			name = n;
-		}
-		void Setname(string n) {
-			name = n;
-		}
-		void Show()
-		{
-			cout << "Video card: " << name << endl;
-		}
-	};
-
-	vicard vc;
-	osmemory os;
-	ssdmemory ssd;
-	processor proc;
-
-	mouse mouse;
-	keyboard keyboard;
-	columns cs;
-
-public:
-	laptop() {
-		proc.Setname("AMD");
+	void Input(const char* n, int a) {
+		name = new char[strlen(n) + 1];
+		strcpy_s(name, strlen(n) + 1, n);
+		age = a;
 	}
 	void Show() {
-		proc.Show();
-		ssd.Show();
-		os.Show();
-		vc.Show();
-		cout << "Mouse: " << mouse.Getname() << endl;
-		cout << "Keyboard: " << keyboard.Getname()<<endl;
-		cout << "Colums: " << cs.Getname();
+		cout << "Name: " << name << endl << "Age: " << age << endl;
 	}
-	void Setprocessor(string n) {
-		proc.Setname(n);
+	~pet() {
+		delete[] name;
 	}
-	void Setssdmemory(double n) {
-		ssd.Setmemory(n);
+};
+
+class Dog : public pet {
+	char* color;
+	char* breed;
+public:
+	Dog() {
+		color = nullptr;
+		breed = nullptr;
 	}
-	void Setosmemory(double n) {
-		os.Setmemory(n);
+	Dog(const char* n, int a, const char* c, const char* b) : pet(n, a) {
+		color = new char[strlen(c) + 1];
+		strcpy_s(color, strlen(c) + 1, c);
+
+		breed = new char[strlen(b) + 1];
+		strcpy_s(breed, strlen(b) + 1, b);
 	}
-	void Setvcard(string n) {
-		vc.Setname(n);
+	void Input(const char* c, const char* b, const char* n, int a) {
+		pet::Input(n, a);
+		color = new char[strlen(c) + 1];
+		strcpy_s(color, strlen(c) + 1, c);
+
+		breed = new char[strlen(b) + 1];
+		strcpy_s(breed, strlen(b) + 1, b);
+	}
+	void Show() {
+		pet::Show();
+		cout << "Color: " << color << endl << "Breed: " << breed << endl;
+	}
+	~Dog() {
+		delete[] color;
+		delete[] breed;
+	}
+};
+
+class Cat : public pet {
+	char* color;
+	char* breed;
+public:
+	Cat() {
+		color = nullptr;
+		breed = nullptr;
+	}
+	Cat(const char* n, int a, const char* c, const char* b) : pet(n, a) {
+		color = new char[strlen(c) + 1];
+		strcpy_s(color, strlen(c) + 1, c);
+
+		breed = new char[strlen(b) + 1];
+		strcpy_s(breed, strlen(b) + 1, b);
+	}
+	void Input(const char* c, const char* b, const char* n, int a) {
+		pet::Input(n, a);
+		color = new char[strlen(c) + 1];
+		strcpy_s(color, strlen(c) + 1, c);
+
+		breed = new char[strlen(b) + 1];
+		strcpy_s(breed, strlen(b) + 1, b);
+	}
+	void Show() {
+		pet::Show();
+		cout << "Color: " << color << endl << "Breed: " << breed << endl;
+	}
+	~Cat() {
+		delete[] color;
+		delete[] breed;
+	}
+};
+
+class Parot : public pet {
+	char* color;
+	char* breed;
+public:
+	Parot() {
+		color = nullptr;
+		breed = nullptr;
+	}
+	Parot(const char* n, int a, const char* c, const char* b) : pet(n, a) {
+		color = new char[strlen(c) + 1];
+		strcpy_s(color, strlen(c) + 1, c);
+
+		breed = new char[strlen(b) + 1];
+		strcpy_s(breed, strlen(b) + 1, b);
+	}
+	void Input(const char* c, const char* b, const char* n, int a) {
+		pet::Input(n, a);
+		color = new char[strlen(c) + 1];
+		strcpy_s(color, strlen(c) + 1, c);
+
+		breed = new char[strlen(b) + 1];
+		strcpy_s(breed, strlen(b) + 1, b);
+	}
+	void Show() {
+		pet::Show();
+		cout << "Color: " << color << endl << "Breed: " << breed << endl;
+	}
+	~Parot() {
+		delete[] color;
+		delete[] breed;
 	}
 };
 
 int main() {
-	laptop lap;
-	lap.Show();
+	Cat barsic("Borsh", 3, "black", "Shpic");
 
-	cout << endl << "------------------" << endl;
-	
-	lap.Setosmemory(64);
-	lap.Setprocessor("Intel");
-	lap.Show();
+	barsic.Show();
+
+	cout << "---" << endl;
+
+	barsic.Input("white", "ret", "Barsik", 5);
+
+	barsic.Show();
+
+	cout << "---" << endl;
 
 }
