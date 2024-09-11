@@ -26,6 +26,7 @@ public:
 	~pet() {
 		delete[] name;
 	}
+	virtual const char* getName() { return "Hi"; }
 };
 
 class Dog : public pet {
@@ -59,6 +60,7 @@ public:
 		delete[] color;
 		delete[] breed;
 	}
+	virtual const char* getName() { return "Gov gov!"; }
 };
 
 class Cat : public pet {
@@ -92,6 +94,7 @@ public:
 		delete[] color;
 		delete[] breed;
 	}
+	virtual const char* getName() { return "May may!"; }
 };
 
 class Parot : public pet {
@@ -125,11 +128,13 @@ public:
 		delete[] color;
 		delete[] breed;
 	}
+	virtual const char* getName() { return "Crrr!"; }
 };
 
 int main() {
+	
 	Cat barsic("Borsh", 3, "black", "Shpic");
-
+	pet &a = barsic;
 	barsic.Show();
 
 	cout << "---" << endl;
@@ -139,5 +144,8 @@ int main() {
 	barsic.Show();
 
 	cout << "---" << endl;
+
+	cout << "Sound: " << a.getName();
+	
 
 }
